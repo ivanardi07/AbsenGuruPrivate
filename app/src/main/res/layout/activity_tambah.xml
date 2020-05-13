@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".TambahActivity">
+    
+    <ScrollView
+        android:fillViewport="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="15dp">
+
+            <TextView
+                android:id="@+id/judul"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Tambah Data Guru"
+                android:textAlignment="center"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_nama"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Nama  "
+                android:textSize="17dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/judul" />
+
+            <EditText
+                android:id="@+id/et_nama"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_nama"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_nama"
+                app:layout_constraintTop_toTopOf="@+id/tv_nama" />
+
+            <TextView
+                android:id="@+id/tv_alamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Alamat"
+                android:textSize="17dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama" />
+
+            <EditText
+                android:id="@+id/et_alamat"
+                android:layout_width="300dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_alamat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/tv_alamat"
+                app:layout_constraintTop_toBottomOf="@+id/tv_nama" />
+
+            <TextView
+                android:id="@+id/tv_jk_guru"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="10dp"
+                android:text="Jenis Kelamin"
+                android:textSize="17dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_alamat" />
+
+            <RadioGroup
+                android:id="@+id/jk_grup"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_jk_guru">
+
+                <RadioButton
+                    android:id="@+id/btn_laki"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Laki-laki"
+                    android:textColor="#000000"
+                    android:textSize="14dp" />
+
+                <RadioButton
+                    android:id="@+id/btn_perempuan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Perempuan"
+                    android:textColor="#000000"
+                    android:textSize="14dp" />
+            </RadioGroup>
+
+            <TextView
+                android:id="@+id/tv_notelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="No. Telp"
+                android:textSize="17dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/jk_grup" />
+
+            <EditText
+                android:id="@+id/et_notelp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_notelp"
+                app:layout_constraintStart_toEndOf="@+id/tv_notelp"
+                app:layout_constraintTop_toTopOf="@+id/tv_notelp" />
+
+            <TextView
+                android:id="@+id/tv_foto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Foto"
+                android:textSize="17dp"
+                android:layout_marginTop="25dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_notelp" />
+
+            <ImageView
+                android:id="@+id/img_foto"
+                android:layout_width="100dp"
+                android:layout_height="130dp"
+                android:layout_marginTop="5dp"
+                android:src="@color/cardview_dark_background"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_foto" />
+
+            <Button
+                android:id="@+id/btn_upload_foto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Upload"
+                android:textSize="10dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_foto" />
+
+            <TextView
+                android:id="@+id/tv_username"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Username"
+                android:textSize="17dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/btn_upload_foto" />
+
+            <EditText
+                android:id="@+id/et_input_username"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_username"
+                app:layout_constraintStart_toEndOf="@+id/tv_username"
+                app:layout_constraintTop_toTopOf="@+id/tv_username" />
+
+            <TextView
+                android:id="@+id/tv_password"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:padding="5dp"
+                android:text="Password"
+                android:textSize="17dp"
+                android:layout_marginTop="20dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_username" />
+
+            <EditText
+                android:id="@+id/et_input_password"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_password"
+                app:layout_constraintStart_toEndOf="@+id/tv_password"
+                app:layout_constraintTop_toTopOf="@+id/tv_password" />
+
+            <Button
+                android:id="@+id/btn_tambah_data_guru"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="Simpan"
+                android:textColor="#FFF"
+                android:layout_marginTop="15dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/et_input_password" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".GuruActivity">
+
+    <include
+        android:id="@+id/profil_guru"
+        layout="@layout/item_guru"/>
+
+    <Button
+        android:id="@+id/btn_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:backgroundTint="@color/colorPrimary"
+        android:text="Logout"
+        android:textColor="#FFF"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/profil_guru"
+        android:onClick="onKlikLogoutGuru"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_absen"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:paddingStart="5dp"
+        android:paddingEnd="5dp"
+        android:paddingTop="230dp"
+        android:paddingBottom="75dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
