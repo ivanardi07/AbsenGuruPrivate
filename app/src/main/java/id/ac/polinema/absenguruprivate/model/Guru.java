@@ -1,5 +1,7 @@
 package id.ac.polinema.absenguruprivate.model;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -14,6 +16,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
+import id.ac.polinema.absenguruprivate.GuruActivity;
 import id.ac.polinema.absenguruprivate.R;
 
 public class Guru extends AbstractItem<Guru, Guru.ViewHolder> {
@@ -83,7 +86,7 @@ public class Guru extends AbstractItem<Guru, Guru.ViewHolder> {
         ImageView foto;
         TextView nama, alamat, jenis_kelamin, no_telp, username, password;
 
-        public ViewHolder(View itemView) {
+        public ViewHolder(final View itemView) {
             super(itemView);
             foto = itemView.findViewById(R.id.foto_profil);
             nama = itemView.findViewById(R.id.nama_guru);
@@ -92,10 +95,11 @@ public class Guru extends AbstractItem<Guru, Guru.ViewHolder> {
             no_telp = itemView.findViewById(R.id.telp_guru);
             username = itemView.findViewById(R.id.username_view_guru);
             password = itemView.findViewById(R.id.password_view_guru);
+
         }
 
         @Override
-        public void bindView(Guru item, List<Object> payloads) {
+        public void bindView(final Guru item, List<Object> payloads) {
             Picasso.get().load(item.getFoto()).into(foto);
             nama.setText(item.nama);
             alamat.setText(item.alamat);
@@ -103,6 +107,16 @@ public class Guru extends AbstractItem<Guru, Guru.ViewHolder> {
             no_telp.setText(item.no_telp);
             username.setText(item.username);
             password.setText(item.password);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Context context = itemView.getContext();
+                    Intent intent = new Intent(context, GuruActivity.class);
+                    intent.putExtra("username", item.username);
+                    context.startActivity(intent);
+                }
+            });
         }
 
         @Override

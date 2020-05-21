@@ -31,7 +31,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class TambahActivity extends AppCompatActivity {
+public class TambahGuruActivity extends AppCompatActivity {
     private Button btnTambah, btnUpload;
     private EditText inputNama, inputAlamat, inputTelp, inputUsername, inputPassword;
     private RadioGroup radioGroup;
@@ -42,7 +42,7 @@ public class TambahActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_tambah);
+        setContentView(R.layout.activity_tambah_guru);
 
         btnTambah = findViewById(R.id.btn_tambah_data_guru);
         btnUpload = findViewById(R.id.btn_upload_foto);

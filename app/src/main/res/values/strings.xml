@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">AbsenGuruPrivate</string>
+<!--    <string name="title_activity_siswa">SiswaActivity</string>-->
+    <string name="tab_text_1">Guru</string>
+    <string name="tab_text_2">Siswa</string>
+<!--    <string name="title_activity_main2">Main2Activity</string>-->
 </resources>

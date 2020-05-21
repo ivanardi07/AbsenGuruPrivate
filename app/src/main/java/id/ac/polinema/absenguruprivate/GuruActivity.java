@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -37,6 +38,7 @@ public class GuruActivity extends AppCompatActivity {
     private ImageView foto;
     private TextView nama, alamat, jenis_kelamin, no_telp, username, password;
     private Session session;
+    private CardView guru;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,16 @@ public class GuruActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guru);
 
         session = new Session(getApplicationContext());
+
+//        guru = findViewById(R.id.profil_guru);
+//        guru.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+//            }
+//        });
+
+//        if (session.getLoggedInRole().equals("admin"));
 
         final RecyclerView absenView = findViewById(R.id.rv_absen);
         final ItemAdapter itemAdapter = new ItemAdapter<>();
@@ -60,7 +72,7 @@ public class GuruActivity extends AppCompatActivity {
         password = findViewById(R.id.password_view_guru);
 
         InterfaceApi interfaceApi = ApiClient.getClient().create(InterfaceApi.class);
-        Call<List<Guru>> call = interfaceApi.getGuruByUsername(session.getUsername());
+        Call<List<Guru>> call = interfaceApi.getGuruByUsername(getIntent().getStringExtra("username"));
 
         call.enqueue(new Callback<List<Guru>>() {
             @Override
@@ -86,7 +98,7 @@ public class GuruActivity extends AppCompatActivity {
             }
         });
 
-        Call<List<Absen>> call1 = interfaceApi.getAbsenByUsername(session.getUsername());
+        Call<List<Absen>> call1 = interfaceApi.getAbsenByUsername(getIntent().getStringExtra("username"));
 
         call1.enqueue(new Callback<List<Absen>>() {
             @Override
@@ -96,21 +108,22 @@ public class GuruActivity extends AppCompatActivity {
 
                     for (Absen item : absenItems) {
                         absen.add(new Absen(item.getUsername(), item.getPassword(), item.getJam_login(),
-                                item.getJam_logout(), item.getTanggal()));
+                                item.getJam_logout(), item.getTanggal(), item.getLokasi_latitude(), item.getLokasi_longitude(),
+                                item.getNim_siswa(), item.getNama(), item.getAlamat()));
                     }
+                }
 
-                    absen.add(new Absen(session.getUsername(), session.getPassword(), session.getLoginTime(),
-                            session.getLogoutTime(), session.getDate()));
-
+                    if (session.getUsername().equals(getIntent().getStringExtra("username"))) {
+                        absen.add(new Absen(session.getUsername(), session.getPassword(), session.getLoginTime(),
+                                session.getLogoutTime(), session.getDate(), session.getLocLatitude(), session.getLongitude(),
+                                session.getNimSiswa(), session.getNamaSiswa(), session.getAlamatSiswa()));
+                    }
                     itemAdapter.add(absen);
                     absenView.setAdapter(fastAdapter);
 
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                     absenView.setLayoutManager(layoutManager);
-                } else {
-                    Toast.makeText(getApplicationContext(), "Data Absen gagal ditampilkan", Toast.LENGTH_SHORT).show();
                 }
-            }
 
             @Override
             public void onFailure(Call<List<Absen>> call, Throwable t) {
@@ -134,10 +147,15 @@ public class GuruActivity extends AppCompatActivity {
                 String jam_login = session.getLoginTime();
                 String jam_logout = session.getLogoutTime();
                 String tanggal = session.getDate();
+                double lokasi_latitude = session.getLocLatitude();
+                double lokasi_longitude = session.getLongitude();
+                String nim_siswa = session.getNimSiswa();
+                String nama_siswa = session.getNamaSiswa();
+                String alamat_siswa = session.getAlamatSiswa();
 
                 InterfaceApi interfaceApi = ApiClient.getClient().create(InterfaceApi.class);
 
-                Call<ResponseBody> call = interfaceApi.absenGuru(new Absen(username, password, jam_login, jam_logout, tanggal));
+                Call<ResponseBody> call = interfaceApi.absenGuru(new Absen(username, password, jam_login, jam_logout, tanggal, lokasi_latitude, lokasi_longitude, nim_siswa, nama_siswa, alamat_siswa));
 
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override

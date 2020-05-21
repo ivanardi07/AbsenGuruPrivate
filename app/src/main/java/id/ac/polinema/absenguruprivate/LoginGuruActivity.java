@@ -43,7 +43,7 @@ public class LoginGuruActivity extends AppCompatActivity {
         session = new Session(getApplicationContext());
         inputUsername = findViewById(R.id.et_username_guru);
         inputPassword = findViewById(R.id.et_password_guru);
-        result = findViewById(R.id.btn_tv_guru);
+        result = findViewById(R.id.btn_tv_admin);
         loginButton = findViewById(R.id.btn_login_guru);
         loginForm = findViewById(R.id.login_guru);
 
@@ -54,17 +54,26 @@ public class LoginGuruActivity extends AppCompatActivity {
                 userLogin(inputUsername.getText().toString(), inputPassword.getText().toString());
             }
         });
+
+        if (session.getLoggedInStatus()) {
+            if (session.getLoggedInRole().equals("admin")) {
+                Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
+                startActivity(intent);
+            } else if (session.getLoggedInRole().equals("guru")) {
+                Intent intent = new Intent(getApplicationContext(), Guru1Activity.class);
+                startActivity(intent);
+            }
+        }
     }
 
     private void userLogin(String username, String password) {
         InterfaceApi interfaceApi = ApiClient.getClient().create(InterfaceApi.class);
 
         Call<ResponseBody> call = interfaceApi.loginGuru(new Login(username, password));
-
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful()){
                     try {
                         JSONArray json = new JSONArray(response.body().string());
                         String username = json.getJSONObject(0).getString("username");
@@ -73,20 +82,21 @@ public class LoginGuruActivity extends AppCompatActivity {
                         String currentDate = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault()).format(new Date());
 
                         session.setLoggedInStatus(true);
+                        session.setLoggedInRole("guru");
                         session.setUsername(username);
                         session.setPassword(password);
                         session.setLoginTime(currentTime);
                         session.setDate(currentDate);
 
-                        Intent intent = new Intent(getApplicationContext(), GuruActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), Guru1Activity.class);
                         startActivity(intent);
-                    } catch (JSONException e) {
+                    } catch (JSONException e){
                         e.printStackTrace();
-                    } catch (IOException e) {
+                    } catch (IOException e){
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Credentials are not Valid.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Akun tidak terdaftar", Toast.LENGTH_SHORT).show();
                 }
             }
 

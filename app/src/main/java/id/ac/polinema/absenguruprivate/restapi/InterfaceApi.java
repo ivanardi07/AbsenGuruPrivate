@@ -6,11 +6,11 @@ import java.util.Map;
 import id.ac.polinema.absenguruprivate.model.Absen;
 import id.ac.polinema.absenguruprivate.model.Guru;
 import id.ac.polinema.absenguruprivate.model.Login;
+import id.ac.polinema.absenguruprivate.model.Siswa;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.Multipart;
@@ -20,10 +20,10 @@ import retrofit2.http.PartMap;
 import retrofit2.http.Query;
 
 public interface InterfaceApi {
-    @POST("login_admin")
+    @POST("loginAdmin")
     Call<ResponseBody> loginAdmin(@Body Login login);
 
-    @POST("login_guru")
+    @POST("loginGuru")
     Call<ResponseBody> loginGuru(@Body Login login);
 
     @GET("guru")
@@ -32,14 +32,18 @@ public interface InterfaceApi {
     @GET("guru")
     Call<List<Guru>> getGuruByUsername(@Query("username") String username);
 
+    @GET("siswa")
+    Call<List<Siswa>> getSiswa();
 
+    @POST("siswa")
+    Call<ResponseBody> tambahSiswa(@Body Siswa siswa);
 
-    @GET("absen")
+    @GET("absenGuru")
     Call<List<Absen>> getAbsenByUsername(
             @Query("username") String username
     );
 
-    @POST("absen")
+    @POST("absenGuru")
     Call<ResponseBody> absenGuru(@Body Absen absen);
 
     @Multipart

@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".AdminActivity">
+
+        <Button
+            android:id="@+id/btn_tambah_siswa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Tambah"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="#FFF"
+            android:layout_marginEnd="10dp"
+            app:layout_constraintEnd_toStartOf="@id/btn_logout_siswa"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="onKlikTambahSiswa"/>
+
+        <Button
+            android:id="@+id/btn_logout_siswa"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:text="Logout"
+            android:backgroundTint="@color/colorPrimary"
+            android:textColor="#FFF"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:onClick="onKlikLogout"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_siswa"
+            android:layout_width="match_parent"
+            android:layout_height="680dp"
+            android:padding="5dp"
+            android:layout_marginTop="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/btn_tambah_siswa" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

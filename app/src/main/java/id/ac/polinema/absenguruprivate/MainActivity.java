@@ -39,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
         final RecyclerView guruView = findViewById(R.id.rv_guru);
         final ItemAdapter itemAdapter = new ItemAdapter<>();
         final FastAdapter fastAdapter = FastAdapter.with(itemAdapter);
-
         final List guru = new ArrayList<>();
 
         InterfaceApi interfaceApi = ApiClient.getClient().create(InterfaceApi.class);
@@ -54,14 +53,13 @@ public class MainActivity extends AppCompatActivity {
                         guru.add(new Guru(item.getNama(), item.getAlamat(), item.getJenis_kelamin(),
                                 item.getNo_telp(), item.getFoto(), item.getUsername(), item.getPassword()));
                     }
-
                     itemAdapter.add(guru);
                     guruView.setAdapter(fastAdapter);
 
                     RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getApplicationContext());
                     guruView.setLayoutManager(layoutManager);
                 } else {
-                    Toast.makeText(getApplicationContext(), "Failure", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Gagal menampilkan data", Toast.LENGTH_SHORT).show();
                 }
             }
 
@@ -70,10 +68,12 @@ public class MainActivity extends AppCompatActivity {
                 error.setText(t.getMessage());
             }
         });
+
+
     }
 
     public void onKlikTambah(View view) {
-        Intent intent = new Intent(getApplicationContext(), TambahActivity.class);
+        Intent intent = new Intent(getApplicationContext(), TambahGuruActivity.class);
         startActivity(intent);
     }
 

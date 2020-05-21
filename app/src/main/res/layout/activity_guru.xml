@@ -7,7 +7,7 @@
     tools:context=".GuruActivity">
 
     <include
-        android:id="@+id/profil_guru"
+        android:id="@+id/profil_guru_absen"
         layout="@layout/item_guru"/>
 
     <Button
@@ -20,7 +20,7 @@
         android:text="Logout"
         android:textColor="#FFF"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/profil_guru"
+        app:layout_constraintTop_toBottomOf="@id/profil_guru_absen"
         android:onClick="onKlikLogoutGuru"/>
 
     <androidx.recyclerview.widget.RecyclerView

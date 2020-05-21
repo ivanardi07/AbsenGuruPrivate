@@ -56,11 +56,10 @@ public class LoginAdminActivity extends AppCompatActivity {
         InterfaceApi interfaceApi = ApiClient.getClient().create(InterfaceApi.class);
 
         Call<ResponseBody> call = interfaceApi.loginAdmin(new Login(username, password));
-
         call.enqueue(new Callback<ResponseBody>() {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
-                if (response.isSuccessful()) {
+                if (response.isSuccessful()){
                     try {
                         JSONArray json = new JSONArray(response.body().string());
                         String username = json.getJSONObject(0).getString("username");
@@ -70,7 +69,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                         session.setUsername(username);
                         session.setPassword(password);
 
-                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent intent = new Intent(getApplicationContext(), AdminActivity.class);
                         startActivity(intent);
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -78,7 +77,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                         e.printStackTrace();
                     }
                 } else {
-                    Toast.makeText(getApplicationContext(), "Credentials are not Valid.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "Akun tidak terdaftar", Toast.LENGTH_SHORT).show();
                 }
             }
 

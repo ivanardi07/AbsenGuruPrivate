@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".TambahActivity">
+    tools:context=".TambahGuruActivity">
     
     <ScrollView
         android:fillViewport="true"
@@ -42,7 +42,7 @@
 
             <EditText
                 android:id="@+id/et_nama"
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_nama"
@@ -63,7 +63,7 @@
 
             <EditText
                 android:id="@+id/et_alamat"
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginStart="16dp"
                 android:layout_height="wrap_content"
@@ -121,9 +121,10 @@
 
             <EditText
                 android:id="@+id/et_notelp"
-                android:layout_width="300dp"
+                android:layout_width="280dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
+                android:inputType="number"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_notelp"
                 app:layout_constraintStart_toEndOf="@+id/tv_notelp"
                 app:layout_constraintTop_toTopOf="@+id/tv_notelp" />
