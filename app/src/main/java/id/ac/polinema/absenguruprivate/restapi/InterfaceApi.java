@@ -30,7 +30,9 @@ public interface InterfaceApi {
     Call<List<Guru>> getGuru();
 
     @GET("guru")
-    Call<List<Guru>> getGuruByUsername(@Query("username") String username);
+    Call<List<Guru>> getGuruByUsername(
+            @Query("username") String username
+    );
 
     @GET("siswa")
     Call<List<Siswa>> getSiswa();
